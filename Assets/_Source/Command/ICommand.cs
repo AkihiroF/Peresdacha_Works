@@ -4,6 +4,7 @@ namespace Command
 {
     public interface ICommand
     {
-        public void Invoke(Vector2 position);
+        void Invoke(Vector2 position);
+        void Undo();
     }
 }

@@ -18,5 +18,9 @@ public class ClientInput : MonoBehaviour
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             commandInvoker.InvokeCommand("Spawn", position);
         }
+        if (Input.GetMouseButtonDown(2))
+        {
+            commandInvoker.Undo();
+        }
     }
 }
