@@ -1,4 +1,5 @@
 using Strategy.Strategies;
+using Template;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ namespace Strategy
         [SerializeField] private Button iceButton;
         [SerializeField] private Button lightningButton;
 
+        [SerializeField] private EnemySwitcher switcher;
+
         private Character _character;
         private IAttackStrategy _currentStrategy;
 
@@ -17,9 +20,9 @@ namespace Strategy
         {
             _character = new Character();
             
-            fireButton.onClick.AddListener(() => SelectStrategy(new FireAttack()));
-            iceButton.onClick.AddListener(() => SelectStrategy(new IceAttack()));
-            lightningButton.onClick.AddListener(() => SelectStrategy(new LightningAttack()));
+            fireButton.onClick.AddListener(() => SelectStrategy(new FireAttack(switcher.FireEnemy)));
+            iceButton.onClick.AddListener(() => SelectStrategy(new IceAttack(switcher.IceEnemy)));
+            lightningButton.onClick.AddListener(() => SelectStrategy(new LightningAttack(switcher.LightEnemy)));
         }
 
         private void Update()
@@ -35,6 +38,8 @@ namespace Strategy
             _currentStrategy = strategy;
             _character.SetStrategy(_currentStrategy);
             
+            switcher.ChangeEnemy(_currentStrategy.AssociatedEnemy.GetType());
+
             HighlightButton(strategy.GetType());
         }
 
