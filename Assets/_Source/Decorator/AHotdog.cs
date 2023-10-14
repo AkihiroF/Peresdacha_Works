@@ -1,19 +1,31 @@
+using So;
+
 namespace Decorator
 {
     public abstract class AHotdog
     {
-        protected string Name;
+        protected HotdogSO hotdogSO;
+        
+        public HotdogSO HotdogSO => hotdogSO;
 
-        protected AHotdog(string name)
+        public AHotdog(HotdogSO hotdogSO)
         {
-            this.Name = name;
+            this.hotdogSO = hotdogSO;
         }
 
         public virtual string GetName()
         {
-            return Name;
+            return hotdogSO.hotdogName;
         }
 
-        public abstract int GetCost();
+        public virtual int GetCost()
+        {
+            return hotdogSO.cost;
+        }
+
+        public virtual int GetWeight()
+        {
+            return hotdogSO.weight;
+        }
     }
 }

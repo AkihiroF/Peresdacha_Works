@@ -1,14 +1,11 @@
+using So;
+
 namespace Decorator
 {
     public class ClassicHotdog : AHotdog
     {
-        public ClassicHotdog() : base("Классический")
+        public ClassicHotdog(HotdogSO hotdogSO) : base(hotdogSO)
         {
-        }
-
-        public override int GetCost()
-        {
-            return 210;
         }
     }
 }

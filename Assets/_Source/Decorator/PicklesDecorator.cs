@@ -1,17 +1,13 @@
+using So;
+
 namespace Decorator
 {
     public class PicklesDecorator : HotdogDecorator
     {
-        public PicklesDecorator(AHotdog hotdog) : base(hotdog) { }
+        protected AHotdog hotdog;
+        protected DecoratorSO decoratorSO;
 
-        public override string GetName()
-        {
-            return base.GetName() + " с маринованными огурцами";
-        }
-
-        public override int GetCost()
-        {
-            return base.GetCost() + 50;
-        }
+        public PicklesDecorator(AHotdog hotdog, DecoratorSO decoratorSO) : base(hotdog, decoratorSO) { }
+        
     }
 }

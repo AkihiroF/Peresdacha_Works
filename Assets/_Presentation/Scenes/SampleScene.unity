@@ -244,6 +244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9285c61050da4324b3d8093894cd4e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  classicSO: {fileID: 11400000, guid: 6eaa4ef7187a649dfa8cea69e4027579, type: 2}
+  picklesSO: {fileID: 11400000, guid: a20e10a90affb4fababa3060d7cff4f8, type: 2}
+  onionSO: {fileID: 11400000, guid: b7c85ee22f9b54856940de244bf9cfa2, type: 2}
 --- !u!4 &1044312883
 Transform:
   m_ObjectHideFlags: 0

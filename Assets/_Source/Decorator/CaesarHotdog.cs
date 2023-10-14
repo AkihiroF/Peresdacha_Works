@@ -1,14 +1,11 @@
+using So;
+
 namespace Decorator
 {
     public class CaesarHotdog : AHotdog
     {
-        public CaesarHotdog() : base("Цезарь")
+        public CaesarHotdog(HotdogSO hotdogSO) : base(hotdogSO)
         {
-        }
-
-        public override int GetCost()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,14 +1,11 @@
+using So;
+
 namespace Decorator
 {
     public class MeatHotdog : AHotdog
     {
-        public MeatHotdog() : base("Мясной")
+        public MeatHotdog(HotdogSO hotdogSO) : base(hotdogSO)
         {
-        }
-
-        public override int GetCost()
-        {
-            return 250;
         }
     }
 }
