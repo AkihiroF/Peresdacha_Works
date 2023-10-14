@@ -10,6 +10,7 @@ namespace Command
 
         private const int _maxCommands = 10;
         private readonly Stack<ICommand> _commandStack = new Stack<ICommand>();
+        private readonly Queue<(ICommand command, Vector2 position)> _rightClickCommandQueue = new Queue<(ICommand, Vector2)>();
         private Dictionary<string, ICommand> _commands;
 
         private void Start()
@@ -21,11 +22,39 @@ namespace Command
             };
         }
 
-        public void InvokeCommand(string commandName, Vector2 position)
+        public void InvokeCommand(string commandName, Vector2 position, bool executeImmediately = true)
         {
             if (_commands.ContainsKey(commandName))
             {
                 ICommand command = CreateCommand(commandName);
+
+                if (executeImmediately)
+                {
+                    command.Invoke(position);
+
+                    if (_commandStack.Count >= _maxCommands)
+                    {
+                        _commandStack.Pop();
+                    }
+
+                    _commandStack.Push(command);
+                }
+                else
+                {
+                    _rightClickCommandQueue.Enqueue((command, position));
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Command {commandName} not found.");
+            }
+        }
+
+        public void ExecuteRightClickQueue()
+        {
+            while (_rightClickCommandQueue.Count > 0)
+            {
+                var (command, position) = _rightClickCommandQueue.Dequeue();
                 command.Invoke(position);
 
                 if (_commandStack.Count >= _maxCommands)
@@ -34,10 +63,6 @@ namespace Command
                 }
 
                 _commandStack.Push(command);
-            }
-            else
-            {
-                Debug.LogWarning($"Command {commandName} not found.");
             }
         }
 

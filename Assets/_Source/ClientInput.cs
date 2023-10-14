@@ -10,17 +10,23 @@ public class ClientInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            commandInvoker.InvokeCommand("Move", position);
+            commandInvoker.InvokeCommand("Move", position, false);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            commandInvoker.InvokeCommand("Spawn", position);
+            commandInvoker.InvokeCommand("Spawn", position, false);
         }
+
         if (Input.GetMouseButtonDown(2))
         {
             commandInvoker.Undo();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            commandInvoker.ExecuteRightClickQueue();
         }
     }
 }
